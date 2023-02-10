@@ -17,7 +17,7 @@ def create_cube():
 create_cube()
 
 #----------------PARTE 2-------------------------#
-# MODIFICAR LOS 
+# MODIFICAR LOS VECTORES
 
 def change_cube_vectors():
     # Seleccionamos na vez mas el cubo
@@ -39,3 +39,26 @@ def change_cube_vectors():
 
 # Ejecutamos la funcion para cambiar los vectores del cubo
 change_cube_vectors()
+
+#----------------PARTE 3-------------------------#
+# APLICAR MODIFICADORES
+
+def add_subdivisions_to_cube():
+    # Seleccionar el objeto cubo
+    bpy.ops.object.select_all(action='DESELECT')
+    bpy.data.objects['Cube'].select_set(True)
+    cube = bpy.context.object
+    
+    # Acceder a la malla del objeto
+    mesh = cube.data
+    
+    # Añadir subdivisiones a la malla
+    bpy.ops.object.modifier_add(type='SUBSURF')
+    subsurf_modifier = mesh.modifiers["Subsurf"]
+    subsurf_modifier.levels = 2
+    
+    # Actualizar la malla
+    mesh.update()
+
+# Ejecutar la función para añadir subdivisiones al cubo
+add_subdivisions_to_cube()
